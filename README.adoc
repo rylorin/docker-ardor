@@ -1,9 +1,9 @@
-# docker-nxt: Docker image
-
 You can find this image on the docker hub at:
-https://hub.docker.com/rylorin/ardor
+https://hub.docker.com/r/rylorin/ardor/
 
-Warning: this is a work in progress, not ready for production use
+This work is strongly based on @chevdor work at https://github.com/chevdor/docker-nxt
+
+Warning: Ardor has not yet been released for production. This docker image has been only tested for testnet.
 
 ## Intro
 Docker allows creating lightweight virtualized environment. You can read more about Docker at http://www.docker.com
@@ -17,6 +17,13 @@ It installs java and the latest NXT software. By default, the container will run
 NOTE: In order to save a few MB, the image is removing a few things from the official NRS: .exe, source & changelog folders, ...
 
 ## Creating and running the container
+
+### Configuration
+
+You can remap the following volumes
+/ardor/conf: can store your custom configuration files
+/ardor/db: used to store database files. It's generally a good idea to map this volume to a persistent volume on your host otherwise you will loose your configuration and will have to download blockchain from scratch again when you will upgrade your image
+
 
 ### Environment variables
 

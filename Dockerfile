@@ -17,7 +17,8 @@ RUN \
 
 ADD scripts /nxt-boot/scripts
 
-# VOLUME /ardor
+VOLUME /ardor/conf
+VOLUME /ardor/db
 WORKDIR /ardor
 
 ENV NXTNET test
