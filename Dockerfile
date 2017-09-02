@@ -9,14 +9,16 @@ RUN \
   apk add wget gpgme && \
   mkdir /nxt-boot && \
   wget --no-check-certificate https://bitbucket.org/Jelurida/ardor/downloads/ardor-client-$NRSVersion.zip && \
+  wget --no-check-certificate  https://bitbucket.org/Jelurida/ardor/downloads/ardor-client-$NRSVersion.zip.asc && \
+  gpg --keyserver pgpkeys.mit.edu --recv-key 0xC654D7FCFF18FD55 && \
+  gpg --verify ardor-client-$NRSVersion.zip.asc && \
   unzip -o ardor-client-$NRSVersion.zip && \
-  rm -fr armor/*.exe armor/changelogs && \
-  rm ardor-client-$NRSVersion.zip
+  rm -f ardor-client-$NRSVersion.zip ardor-client-$NRSVersion.zip.asc ardor/*.exe ardor/changelogs/*
 
 ADD scripts /nxt-boot/scripts
 
-# VOLUME /nxt
-WORKDIR /nxt-boot
+# VOLUME /ardor
+WORKDIR /ardor
 
 ENV NXTNET test
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -f "/nxt/.init" ]; then
+if [ ! -f "/.init" ]; then
 	echo -e " init-nxt.sh: Performing init..."
 
 	# If there is no .init, this can be a new install
@@ -19,8 +19,7 @@ if [ ! -f "/nxt/.init" ]; then
 		/nxt-boot/scripts/$filename
 	fi
 
-	cd /
-
+#	cd /
 	# Now time to get the NRS client
 #	wget --no-check-certificate https://bitbucket.org/Jelurida/ardor/downloads/ardor-client-$NRSVersion.zip && \
 #	wget --no-check-certificate  https://bitbucket.org/Jelurida/ardor/downloads/ardor-client-$NRSVersion.zip.asc && \
@@ -61,25 +60,24 @@ if [ ! -f "/nxt/.init" ]; then
 	# linking of the config
 	if [ "$NXTNET" = "main" ]; then
 		echo " init-nxt.sh: Linking config to mainnet"
-		cp /nxt-boot/conf/nxt-main.properties /nxt/conf/nxt.properties
+		cp /nxt-boot/conf/nxt-main.properties /ardor/conf/nxt.properties
 	else
 		echo " init-nxt.sh: Linking config to testnet"
-		cp /nxt-boot/conf/nxt-test.properties /nxt/conf/nxt.properties
+		cp /nxt-boot/conf/nxt-test.properties /ardor/conf/nxt.properties
 	fi
 
 	# if the admin password is defined in the ENV variable, we append to the config
 	if [ -n "${ADMINPASSWD-}" ]; then
-		echo -e "\nnxt.adminPassword=${ADMINPASSWD-}" >> /nxt/conf/nxt.properties
+		echo -e "\nnxt.adminPassword=${ADMINPASSWD-}" >> /ardor/conf/nxt.properties
 	else
 		echo " ADMINPASSWD not provided"
 	fi
 
 	# If we did all of that, we dump a file that will signal next time that we
 	# should not run the init-script again
-	touch /nxt/.init
+	touch /.init
 else
 	echo -e " init-nxt.sh: Init already done, skipping init."
 fi
 
-cd /nxt
 ./run.sh
