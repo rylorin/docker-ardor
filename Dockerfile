@@ -13,7 +13,7 @@ RUN \
   gpg --keyserver pgpkeys.mit.edu --recv-key 0xC654D7FCFF18FD55 && \
   gpg --verify ardor-client-$NRSVersion.zip.asc && \
   unzip -o ardor-client-$NRSVersion.zip && \
-  rm -f ardor-client-$NRSVersion.zip ardor-client-$NRSVersion.zip.asc ardor/*.exe ardor/changelogs/*
+  rm -f ardor-client-$NRSVersion.zip ardor-client-$NRSVersion.zip.asc ardor/*.exe ardor/changelogs/*.txt
 
 ADD scripts /nxt-boot/scripts
 
