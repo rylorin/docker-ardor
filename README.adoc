@@ -6,15 +6,13 @@ This work is strongly based on @chevdor work at https://github.com/chevdor/docke
 Warning: Ardor has not yet been released for production. This docker image has been only tested for testnet.
 
 ## Intro
-Docker allows creating lightweight virtualized environment. You can read more about Docker at http://www.docker.com
-
-image::http://img.youtube.com/vi/7Lj5h8XJ4RU/0.jpg[link='http://www.youtube.com/watch?v=7Lj5h8XJ4RU']
+Ardor is a blockchain-as-a-service platform that will allow people to utilize the blockchain technology of Nxt through the use of child chains.
 
 ## A word about this image
-This is a Docker container to run Nxt on testnet or mainnet. This image is based on phusion/baseimage.
-It installs java and the latest NXT software. By default, the container will run on testnet.
+This is a Docker container to run Ardor on testnet or mainnet. This image is based on phusion/baseimage.
+It installs java and the current Ardor node client. By default, the container will run on testnet.
 
-NOTE: In order to save a few MB, the image is removing a few things from the official NRS: .exe, source & changelog folders, ...
+NOTE: In order to save a few MB a few things have been removed from the official NRS: .exe, changelog, ...
 
 ## Creating and running the container
 

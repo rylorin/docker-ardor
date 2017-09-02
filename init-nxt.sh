@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -f "/ardor/.init" ]; then
-	echo -e " init-nxt.sh: Performing init..."
+if [ ! -f "/ardor/conf/version" ]; then
+	echo -e " init-nxt.sh: Performing version $NRSVersion init..."
 
 	# If there is no .init, this can be a new install
 	# or an upgrade...
@@ -54,7 +54,7 @@ if [ ! -f "/ardor/.init" ]; then
 
 	# If we did all of that, we dump a file that will signal next time that we
 	# should not run the init-script again
-	touch /ardor/.init
+	echo $NRSVersion >/ardor/conf/version
 else
 	echo -e " init-nxt.sh: Init already done, skipping init."
 fi
