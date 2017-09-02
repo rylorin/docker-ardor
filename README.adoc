@@ -27,14 +27,6 @@ You can remap the following volumes
 
 ### Environment variables
 
-.NRSVersion
-
-Optionnal: Version in the format A.B.C(.D)
-
-Default: Follows the current version.
-
-You can use this ENV variable to get an older version for which there is no image or get a new version that is so bleeding new that there is no docker image ready yet.
-
 .NXTNET
 
 Optionnal: test or main
@@ -74,19 +66,19 @@ If provided, it will append the following line to the default config:
 
 To run the container, use the following command where:
 
-   docker run -it -p 6876:6876 --name mytestnet chevdor/docker-nxt:latest
+   docker run -it -p 26876:26876 --name mytestnet rylorin/ardor:latest
 
 Here is what the options are:
 
-* +-p ABCD:6876+ means you map the port ABCD (the on you will access) to the port 6876 of the container (6876 being the port for testnet).
+* +-p ABCD:26876+ means you map the port ABCD (the on you will access) to the port 26876 of the container (26876 being the port for testnet).
 * +--name whatever+ allows you to name your container. That makes things easier.
-* +chevdor/docker-nxt:latest+ is the name of the image
+* +rylorin/ardor:latest+ is the name of the image
 
 For more options or explanations about the options, please refer to the Docker documentation.
 
 If you are curious about the image and would like to have a look at what it does first, you can issue the following command:
 
-   docker run -it -p 6876:6876 --name mytestnet chevdor/docker-nxt:latest bash
+   docker run -it -p 26876:26876 --name mytestnet rylorin/ardor:latest bash
 
 Notice the +bash+ at the end. Instead of starting off the start script, you will be dumped in a shell and can look around. When you do that, the blockchain is *not* downloaded and the NRS client does *not* start automagically.
 
@@ -94,9 +86,7 @@ Notice the +bash+ at the end. Instead of starting off the start script, you will
 
 You may request the container to run on the mainnet by specifying the ENV variable +NXTNET=main+ as shown below:
 
-   docker run -it -p 7876:7876 -e NXTNET=main --name mymainnet chevdor/docker-nxt:latest
-
-NOTE: Any other value than “main” for the NXTNET variable will make your container run on testnet.
+   docker run -it -p 7876:7876 -e NXTNET=main --name mymainnet rylorin/ardor:latest
 
 ## Blockchain bootstrapping
 
@@ -119,7 +109,7 @@ WARNING: Downloading an unknown blockchain from an unknown/untrusted source is r
 
 You can tell the container to start off your zip file in case it has no blockchain (which is the case by default).
 
-   docker run -it -p 6876:6876 -e BLOCKCHAINDL=http://192.168.0.1/blockchain/nxt_test_db.zip chevdor/docker-nxt:latest
+   docker run -it -p 6876:6876 -e BLOCKCHAINDL=http://192.168.0.1/blockchain/nxt_test_db.zip rylorin/ardor:latest
 
 NOTE: The container will attempt to download the blockchain from your zip file only if the database folder is unavailable.
 You can leave the ENV variable as it is even if you restart the container. The container will see that you already have a databse folder and skip the download. If you want redownload the blockchain from your zip, you will have to either delete the database folder manually in the container or simple kick off a brand new container.
