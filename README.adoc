@@ -1,0 +1,128 @@
+# docker-nxt: Docker image
+
+You can find this image on the docker hub at:
+https://registry.hub.docker.com/u/chevdor/docker-nxt/
+
+## Intro
+Docker allows creating lightweight virtualized environment. You can read more about Docker at http://www.docker.com
+
+image::http://img.youtube.com/vi/7Lj5h8XJ4RU/0.jpg[link='http://www.youtube.com/watch?v=7Lj5h8XJ4RU']
+
+## A word about this image
+This is a Docker container to run Nxt on testnet or mainnet. This image is based on phusion/baseimage. 
+It installs java and the latest NXT software. By default, the container will run on testnet.
+
+NOTE: In order to save a few MB, the image is removing a few things from the official NRS: .exe, source & changelog folders, ...
+
+## Creating and running the container
+
+### Environment variables
+
+.NRSVersion
+
+Optionnal: Version in the format A.B.C(.D)
+
+Default: Follows the current version.
+
+You can use this ENV variable to get an older version for which there is no image or get a new version that is so bleeding new that there is no docker image ready yet.
+
+.NXTNET
+
+Optionnal: test or main
+Default value: test
+
+.BLOCKCHAINDL
+
+Optional: URL to a zip containing the blockchain to limit the amount of blocks your container will have to download.
+Default: none
+
+NOTE: If you leave this ENV variable empty, not blockchain will be pre-downloaded so it will take a while until your container fully catches up
+
+.PLUGINS 
+
+URL to a text file. See format below
+
+	<sha256> TAB http://192.168.0.1/plugin1.zip
+	<sha256> TAB http://192.168.0.1/plugin2.zip
+	<sha256> TAB http://192.168.0.1/plugin3.zip
+	EMPTY LINE
+
+WARNING: Don´t omit the last empty line, if you do so, the last plugin will be skipped.
+	
+.SCRIPT: 
+
+Optional: URL to a script to run before NRS starts
+
+Default: none
+
+.ADMINPASSWD
+
+If provided, it will append the following line to the default config:
+   
+   nxt.adminPassword=<your pick>
+
+### Testnet
+
+To run the container, use the following command where:
+
+   docker run -it -p 6876:6876 --name mytestnet chevdor/docker-nxt:latest
+
+Here is what the options are:
+
+* +-p ABCD:6876+ means you map the port ABCD (the on you will access) to the port 6876 of the container (6876 being the port for testnet).
+* +--name whatever+ allows you to name your container. That makes things easier.
+* +chevdor/docker-nxt:latest+ is the name of the image 
+
+For more options or explanations about the options, please refer to the Docker documentation.
+
+If you are curious about the image and would like to have a look at what it does first, you can issue the following command:
+
+   docker run -it -p 6876:6876 --name mytestnet chevdor/docker-nxt:latest bash
+
+Notice the +bash+ at the end. Instead of starting off the start script, you will be dumped in a shell and can look around. When you do that, the blockchain is *not* downloaded and the NRS client does *not* start automagically.
+   
+### Mainnet
+
+You may request the container to run on the mainnet by specifying the ENV variable +NXTNET=main+ as shown below:
+
+   docker run -it -p 7876:7876 -e NXTNET=main --name mymainnet chevdor/docker-nxt:latest
+
+NOTE: Any other value than “main” for the NXTNET variable will make your container run on testnet.
+
+## Blockchain bootstrapping
+
+When you start the container, it will immediately connect and start downloading the blockchain if required. The testnet blockchain is much smaller than the mainnet blockchain (which is why the container default to testnet unless you specifically say you want to run on the mainnet). In any case, downloading the blockchain may take up to several hours. Be patient!
+
+As we speak, the current size for the NXT blockchain (zipped) is approximately:
+
+- Mainnet: 555 MB
+- Testnet: 178 MB
+
+## Bootstraping the blockchain
+Downloading the blockchain the first time may take quite some time... lots of time.
+We can improve that!
+
+You will need to create a zip file of the blockchain and make it available on your network. Your zip file can be named as you like. When unzipped, you must get a single folder called +nxt_db+ or +nxt_test_db+.
+
+You make your zip available on a web server and note the address. You should have something similar to http://192.168.0.1/blockchain/mainnet-2015-07-12.zip You could of course put that on a Dropbox or similar service but the best is to keep it local within your network to ensure that the download will be as fast as it can.
+
+WARNING: Downloading an unknown blockchain from an unknown/untrusted source is risky and not recommended at all. Don´t do that except if you... just don´t do that!
+
+You can tell the container to start off your zip file in case it has no blockchain (which is the case by default).
+
+   docker run -it -p 6876:6876 -e BLOCKCHAINDL=http://192.168.0.1/blockchain/nxt_test_db.zip chevdor/docker-nxt:latest  
+
+NOTE: The container will attempt to download the blockchain from your zip file only if the database folder is unavailable.
+You can leave the ENV variable as it is even if you restart the container. The container will see that you already have a databse folder and skip the download. If you want redownload the blockchain from your zip, you will have to either delete the database folder manually in the container or simple kick off a brand new container.
+
+## Update
+
+The update from a version to the next is easy if you use a volume. 
+
+* First stop the first container (the old version)
+* In your volume, delete the +.init+ file (no need to back it up, it is an empty file)
+* Start the second with the new version, pointing to your volume
+
+NOTE: Once you upgraded to a new version, you will not be able to revert to an older version. So make it easy for you to revert, I suggest you create a ZIP of your current database. See chapters above.
+
+NOTE: When upgrading to a new version, the upgrade may take quite a while (my last took 16 hours), be patient! The NRS client will only be available once the update is finished. If you cannot wait, you can watch the logs :)
