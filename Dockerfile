@@ -1,25 +1,27 @@
 FROM jeanblanchard/java:jre-8
 MAINTAINER rylorin <rylorin@gmail.com>
-LABEL version="2.0.3e"
+LABEL version="1.11.10"
 
-ENV NRSVersion=2.0.3e
+ENV NRSVersion=1.11.10
+ENV NRSPlatform=nxt
+ENV NRSPlatform=ardor
 
 RUN \
   apk update && \
   apk add wget gpgme && \
   mkdir /nxt-boot && \
-  wget --no-check-certificate https://bitbucket.org/Jelurida/ardor/downloads/ardor-client-$NRSVersion.zip && \
-  wget --no-check-certificate  https://bitbucket.org/Jelurida/ardor/downloads/ardor-client-$NRSVersion.zip.asc && \
+  wget --no-check-certificate https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip && \
+  wget --no-check-certificate  https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip.asc && \
   gpg --keyserver pgpkeys.mit.edu --recv-key 0xC654D7FCFF18FD55 && \
-  gpg --verify ardor-client-$NRSVersion.zip.asc && \
-  unzip -o ardor-client-$NRSVersion.zip && \
-  rm -f ardor-client-$NRSVersion.zip ardor-client-$NRSVersion.zip.asc ardor/*.exe ardor/changelogs/*.txt
+  gpg --verify ${NRSPlatform}-client-${NRSVersion}.zip.asc && \
+  unzip -o ${NRSPlatform}-client-${NRSVersion}.zip && \
+  rm -f ${NRSPlatform}-client-${NRSVersion}.zip ${NRSPlatform}-client-${NRSVersion}.zip.asc ${NRSPlatform}/*.exe ${NRSPlatform}/changelogs/*.txt
 
 ADD scripts /nxt-boot/scripts
 
-VOLUME /ardor/conf
-VOLUME /ardor/db
-WORKDIR /ardor
+VOLUME /${NRSPlatform}/conf
+VOLUME /${NRSPlatform}/db
+WORKDIR /${NRSPlatform}
 
 ENV NXTNET test
 
