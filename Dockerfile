@@ -14,6 +14,7 @@ RUN \
   wget --no-check-certificate  https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip.asc && \
   gpg --keyserver pgpkeys.mit.edu --recv-key 0xC654D7FCFF18FD55 && \
   gpg --verify ${NRSPlatform}-client-${NRSVersion}.zip.asc && \
+  mkdir /ardor && ln -s /ardor /nxt && \
   unzip -o ${NRSPlatform}-client-${NRSVersion}.zip && \
   rm -f ${NRSPlatform}-client-${NRSVersion}.zip ${NRSPlatform}-client-${NRSVersion}.zip.asc ${NRSPlatform}/*.exe ${NRSPlatform}/changelogs/*.txt
 

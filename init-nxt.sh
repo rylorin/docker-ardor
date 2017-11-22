@@ -18,7 +18,7 @@ if [ ! -f "/ardor/conf/version" ]; then
 	if [ -n "${PLUGINS-}" ]; then
 		/nxt-boot/scripts/install-plugins.sh "$PLUGINS"
 	else
-		echo " PLUGINS not provided"
+		echo "PLUGINS not provided"
 	fi
 
 	# We figure out what is the current db folder
@@ -54,7 +54,7 @@ if [ ! -f "/ardor/conf/version" ]; then
 
 	# If we did all of that, we dump a file that will signal next time that we
 	# should not run the init-script again
-	echo $NRSVersion >/ardor/conf/version
+	echo ${NRSVersion} >/ardor/conf/version
 else
 	echo -e " init-nxt.sh: Init already done, skipping init."
 fi

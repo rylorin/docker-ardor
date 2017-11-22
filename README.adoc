@@ -41,10 +41,10 @@ NOTE: If you leave this ENV variable empty, not blockchain will be pre-downloade
 
 URL to a text file. See format below
 
-	<sha256> TAB http://192.168.0.1/plugin1.zip
-	<sha256> TAB http://192.168.0.1/plugin2.zip
-	<sha256> TAB http://192.168.0.1/plugin3.zip
-	EMPTY LINE
+<sha256> TAB http://192.168.0.1/plugin1.zip
+<sha256> TAB http://192.168.0.1/plugin2.zip
+<sha256> TAB http://192.168.0.1/plugin3.zip
+EMPTY LINE
 
 WARNING: Don´t omit the last empty line, if you do so, the last plugin will be skipped.
 
