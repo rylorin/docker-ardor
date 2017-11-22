@@ -4,7 +4,7 @@ LABEL version="1.11.10"
 
 ENV NRSVersion=1.11.10
 ENV NRSPlatform=nxt
-ENV NRSPlatform=ardor
+# ENV NRSPlatform=ardor
 
 RUN \
   apk update && \
