@@ -33,6 +33,11 @@ COPY ./nxt-main.properties /nxt-boot/conf/
 COPY ./nxt-test.properties /nxt-boot/conf/
 COPY ./init-nxt.sh /nxt-boot/
 
+# main net
+# nxt.peerServerPort = "7874
+# nxt.apiServerPort = "7876"
+# nxt.apiServerSSLPort = "7876"
+# Client UI is at http://localhost:7876/index.html
 EXPOSE 6874 6876 7874 7876
 
 CMD ["/nxt-boot/init-nxt.sh", "/bin/sh"]
