@@ -1,9 +1,12 @@
 FROM jeanblanchard/java:jre-8
 MAINTAINER rylorin <rylorin@gmail.com>
-LABEL version="1.11.10"
 
+LABEL version="1.11.10"
 ENV NRSVersion=1.11.10
 ENV NRSPlatform=nxt
+
+# LABEL version="2.0.3e"
+# ENV NRSVersion=2.0.3e
 # ENV NRSPlatform=ardor
 
 RUN \
@@ -30,6 +33,6 @@ COPY ./nxt-main.properties /nxt-boot/conf/
 COPY ./nxt-test.properties /nxt-boot/conf/
 COPY ./init-nxt.sh /nxt-boot/
 
-EXPOSE 6876 7876 6874 7874
+EXPOSE 6874 6876 7874 7876
 
 CMD ["/nxt-boot/init-nxt.sh", "/bin/sh"]
