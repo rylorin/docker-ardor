@@ -38,6 +38,7 @@ COPY ./init-nxt.sh /nxt-boot/
 # nxt.apiServerPort = "7876"
 # nxt.apiServerSSLPort = "7876"
 # Client UI is at http://localhost:7876/index.html
+# 6874 6876 for Nxt test net
 EXPOSE 6874 6876 7874 7876
 
 CMD ["/nxt-boot/init-nxt.sh", "/bin/sh"]
