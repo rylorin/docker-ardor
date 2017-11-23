@@ -1,13 +1,13 @@
 FROM jeanblanchard/java:jre-8
 MAINTAINER rylorin <rylorin@gmail.com>
 
-LABEL version="1.11.10"
-ENV NRSVersion=1.11.10
-ENV NRSPlatform=nxt
+#LABEL version="1.11.10"
+#ENV NRSVersion=1.11.10
+#ENV NRSPlatform=nxt
 
-# LABEL version="2.0.3e"
-# ENV NRSVersion=2.0.3e
-# ENV NRSPlatform=ardor
+LABEL version="2.0.5e"
+ENV NRSVersion=2.0.5e
+ENV NRSPlatform=ardor
 
 RUN \
   apk update && \
