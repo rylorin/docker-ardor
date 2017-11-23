@@ -47,7 +47,7 @@ else
 fi
 
 # We figure out what is the current db folder
-if [ "${NXTNET}" = "main" ]; then
+if [ "${NXTNET:=test}" = "main" ]; then
 	DB="nxt_db"
 	TESTNET=false
 else
@@ -61,6 +61,6 @@ echo "init-nxt.sh: Preparing config for ${NXTNET} net"
 sed -e "s/ADMINPASSWD/${ADMINPASSWD-}/g" \
 	-e "s/TESTNET/${TESTNET}/g" \
 	-e "s/NXTNET/${NXTNET:-test}/g" \
-	</nxt-boot/conf/nxt-${NXTNET}.properties >/ardor/conf/nxt.properties
+	</nxt-boot/conf/nxt-${NXTNET:-test}.properties >/ardor/conf/nxt.properties
 
 ./run.sh
