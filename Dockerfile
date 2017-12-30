@@ -33,11 +33,13 @@ COPY ./nxt-main.properties /nxt-boot/conf/
 COPY ./nxt-test.properties /nxt-boot/conf/
 COPY ./init-nxt.sh /nxt-boot/
 
-# NXT main net
-EXPOSE 7874 7876
 # Nxt test net
 EXPOSE 6874 6876
+# NXT main net
+EXPOSE 7874 7876
 # Ardor test net
 EXPOSE 26874 26876
+# Ardor main net
+EXPOSE 27874 27876
 
 CMD ["/nxt-boot/init-nxt.sh", "/bin/sh"]
