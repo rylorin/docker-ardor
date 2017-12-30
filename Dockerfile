@@ -5,8 +5,8 @@ MAINTAINER rylorin <rylorin@gmail.com>
 #ENV NRSVersion=1.11.10
 #ENV NRSPlatform=nxt
 
-LABEL version="2.0.8e"
-ENV NRSVersion=2.0.8e
+LABEL version="2.0.9"
+ENV NRSVersion=2.0.9
 ENV NRSPlatform=ardor
 
 RUN \
