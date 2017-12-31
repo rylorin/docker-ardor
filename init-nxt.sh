@@ -62,7 +62,8 @@ sed -e "s/ADMINPASSWD/${ADMINPASSWD-}/g" \
 	-e "s/TESTNET/${TESTNET}/g" \
 	-e "s/NXTNET/${NXTNET:-test}/g" \
 	-e "s/MYPLATFORM/${MYPLATFORM:-Docker}/g" \
-	-e 's/^M$//g' \
+	-e "s/MYADDRESS/${MYADDRESS}/g" \
+	-e 's/\r$//g' \
 	</nxt-boot/conf/nxt-${NXTNET:-test}.properties >/ardor/conf/nxt.properties
 
 ./run.sh
