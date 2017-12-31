@@ -3,10 +3,8 @@ https://hub.docker.com/r/rylorin/ardor/
 
 This work is strongly based on @chevdor work at https://github.com/chevdor/docker-nxt
 
-Warning: Ardor has not yet been released for production. This docker image has been only tested for testnet.
-
 ## Intro
-Ardor is a blockchain-as-a-service platform that will allow people to utilize the blockchain technology of Nxt through the use of child chains.
+Ardor (http://www.ardorplatform.org) a blockchain-as-a-service platform that will allow people to utilize the blockchain technology of Nxt through the use of child chains.
 
 ## A word about this image
 This is a Docker container to run Ardor on testnet or mainnet. This image is based on phusion/baseimage.
