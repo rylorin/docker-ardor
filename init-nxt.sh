@@ -61,6 +61,7 @@ echo "init-nxt.sh: Preparing config for ${NXTNET} net"
 sed -e "s/ADMINPASSWD/${ADMINPASSWD-}/g" \
 	-e "s/TESTNET/${TESTNET}/g" \
 	-e "s/NXTNET/${NXTNET:-test}/g" \
+	-e "s/MYPLATFORM/${MYPLATFORM:-Docker}/g" \
 	-e 's/^M$//g' \
 	</nxt-boot/conf/nxt-${NXTNET:-test}.properties >/ardor/conf/nxt.properties
 
