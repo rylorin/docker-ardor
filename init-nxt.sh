@@ -9,9 +9,13 @@ fi
 
 # We figure out what is the current db folder
 if [ "${NXTNET:=test}" = "main" ]; then
+	# main net
 	TESTNET=false
+	NXTNET=main
 else
+	# everything else defaults to test net
 	TESTNET=true
+	NXTNET=test
 fi
 
 if [ ! -f "/ardor/conf/version" ]; then
@@ -50,7 +54,7 @@ if [ ! -f "/ardor/conf/version" ]; then
 fi
 
 echo "init-nxt.sh: Preparing config for ${NXTNET} net"
-sed -e "s/ADMINPASSWD/${ADMINPASSWD-}/g" \
+sed -e "s/ADMINPASSWD/${ADMINPASSWD}/g" \
 	-e "s/TESTNET/${TESTNET}/g" \
 	-e "s/NXTNET/${NXTNET}/g" \
 	-e "s/MYPLATFORM/${MYPLATFORM:-Docker}/g" \
