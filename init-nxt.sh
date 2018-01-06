@@ -49,7 +49,9 @@ fi
 # $BLOCKCHAINDL must point to a zip that contains the nxt_db folder itself.
 if [ -n "${BLOCKCHAINDL-}" -a ! -d "/ardor/db/nxt_${NXTNET}_db" ]; then
 	echo "$0: downloading blockchain from $BLOCKCHAINDL"
-	wget --no-check-certificate "$BLOCKCHAINDL" -O /ardor/db/nxt_db.zip && unzip /ardor/db/nxt_db.zip && mv nxt_db /ardor/db/nxt_${NXTNET}_db && rm /ardor/db/nxt_db.zip
+	rm -f /ardor/db/nxt_db.zip
+	wget --no-check-certificate "$BLOCKCHAINDL" -O /ardor/db/nxt_db.zip && unzip /ardor/db/nxt_db.zip && mv nxt_db /ardor/db/nxt_${NXTNET}_db
+	rm -f /ardor/db/nxt_db.zip
 	echo "$0: Blockchain download $BLOCKCHAINDL complete"
 else
 	echo "$0: No blockchain bootstrap either BLOCKCHAINDL not provided or directory already exists"
