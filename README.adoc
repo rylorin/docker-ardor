@@ -34,8 +34,7 @@ NOTE: If you leave this ENV variable empty, no blockchain will be pre-downloaded
 
 PLUGINS
 
-URL to a text file. See format below
-
+URL to a text file. See format below:
 <sha256> TAB http://192.168.0.1/plugin1.zip
 <sha256> TAB http://192.168.0.1/plugin2.zip
 <sha256> TAB http://192.168.0.1/plugin3.zip

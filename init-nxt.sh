@@ -46,9 +46,9 @@ if [ ! -f "/ardor/conf/version" ]; then
 fi
 
 # $BLOCKCHAINDL must point to a zip that contains the nxt_db folder itself.
-if [ -n "${BLOCKCHAINDL-}" -a ! -d "nxt_${NXTNET}_db" ]; then
+if [ -n "${BLOCKCHAINDL-}" -a ! -d "/ardor/nxt_${NXTNET}_db" ]; then
 	echo "init-nxt.sh: downloading blockchain from $BLOCKCHAINDL"
-	wget "$BLOCKCHAINDL" && unzip *.zip && mv nxt_db nxt_${NXTNET}_db && rm *.zip
+	wget --no-check-certificate "$BLOCKCHAINDL" && unzip *.zip && mv nxt_db /ardor/nxt_${NXTNET}_db && rm *.zip
 	echo "init-nxt.sh: Blockchain download complete"
 else
 	echo "BLOCKCHAINDL not provided"
