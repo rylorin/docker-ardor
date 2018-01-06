@@ -19,20 +19,20 @@ You can remap the following volumes
 
 ### Environment variables
 
-.NXTNET
+NXTNET
 
 Optionnal: test or main
 Default value: test
 By default, the container will run on testnet.
 
-.BLOCKCHAINDL
+BLOCKCHAINDL
 
 Optional: URL to a zip containing the blockchain to limit the amount of blocks your container will have to download.
 Default: none
 
 NOTE: If you leave this ENV variable empty, no blockchain will be pre-downloaded so it will take a while until your container fully catches up.
 
-.PLUGINS
+PLUGINS
 
 URL to a text file. See format below
 
@@ -43,28 +43,24 @@ EMPTY LINE
 
 WARNING: Don´t omit the last empty line, if you do so, the last plugin will be skipped.
 
-.SCRIPT:
+SCRIPT
 
 Optional: URL to a script to run before NRS starts
-
 Default: none
 
-.ADMINPASSWD
+ADMINPASSWD
 
 If provided, it will append the following line to the default config:
-
    nxt.adminPassword=<your pick>
 
-.MYADDRESS
+MYADDRESS
 
 If provided, it will append the following line to the default config:
-
    nxt.myAddress=<your pick>
 
-.MYPLATFORM
+MYPLATFORM
 
 If provided, it will append the following line to the default config:
-
    nxt.myPlatform=<your pick>
 
 ### Testnet

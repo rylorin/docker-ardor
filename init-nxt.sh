@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 echo "$0: starting"
 
 # if the admin password is defined in the ENV variable, we append to the config
@@ -46,7 +46,7 @@ if [ ! -f "/ardor/conf/version" ]; then
 fi
 
 # $BLOCKCHAINDL must point to a zip that contains the nxt_db folder itself.
-if [ -n "${BLOCKCHAINDL-}" && ! -d "nxt_${NXTNET}_db" ]; then
+if [ -n "${BLOCKCHAINDL-}" -a ! -d "nxt_${NXTNET}_db" ]; then
 	echo "init-nxt.sh: downloading blockchain from $BLOCKCHAINDL"
 	wget "$BLOCKCHAINDL" && unzip *.zip && mv nxt_db nxt_${NXTNET}_db && rm *.zip
 	echo "init-nxt.sh: Blockchain download complete"
