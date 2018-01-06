@@ -1,4 +1,5 @@
 #!/bin/sh
+echo "$0: starting"
 
 # if the admin password is defined in the ENV variable, we append to the config
 if [ -n "${ADMINPASSWD-}" ]; then
@@ -39,18 +40,18 @@ if [ ! -f "/ardor/conf/version" ]; then
 		echo "PLUGINS not provided"
 	fi
 
-	# $BLOCKCHAINDL must point to a zip that contains the nxt_db folder itself.
-	if [ -n "${BLOCKCHAINDL-}" ]; then
-		echo "init-nxt.sh: downloading blockchain from $BLOCKCHAINDL";
-		wget "$BLOCKCHAINDL" && unzip *.zip && mv nxt_db nxt_${NXTNET}_db && rm *.zip
-		echo "init-nxt.sh: Blockchain download complete"
-	else
-		echo "BLOCKCHAINDL not provided"
-	fi
-
 	# If we did all of that, we dump a file that will signal next time that we
 	# should not run the init-script again
 	echo ${NRSVersion} >/ardor/conf/version
+fi
+
+# $BLOCKCHAINDL must point to a zip that contains the nxt_db folder itself.
+if [ -n "${BLOCKCHAINDL-}" && ! -d "nxt_${NXTNET}_db" ]; then
+	echo "init-nxt.sh: downloading blockchain from $BLOCKCHAINDL"
+	wget "$BLOCKCHAINDL" && unzip *.zip && mv nxt_db nxt_${NXTNET}_db && rm *.zip
+	echo "init-nxt.sh: Blockchain download complete"
+else
+	echo "BLOCKCHAINDL not provided"
 fi
 
 echo "init-nxt.sh: Preparing config for ${NXTNET} net"
@@ -62,4 +63,5 @@ sed -e "s/ADMINPASSWD/${ADMINPASSWD}/g" \
 	-e 's/\r$//g' \
 	</nxt-boot/conf/nxt-${NXTNET:-test}.properties >/ardor/conf/nxt.properties
 
+echo "$0: init finished, starting blockchain"
 ./run.sh
