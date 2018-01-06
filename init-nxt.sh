@@ -64,4 +64,5 @@ sed -e "s/ADMINPASSWD/${ADMINPASSWD}/g" \
 	</nxt-boot/conf/nxt-${NXTNET:-test}.properties >/ardor/conf/nxt.properties
 
 echo "$0: init finished, starting blockchain"
+sleep 300 # allow to check everything before start
 ./run.sh
