@@ -54,10 +54,10 @@ if [ -n "${BLOCKCHAINDL-}" -a ! -d "/ardor/db/nxt_${NXTNET}_db" ]; then
 	rm -f /ardor/db/nxt_db.zip
 	echo "$0: Blockchain download $BLOCKCHAINDL complete"
 else
-	echo "$0: No blockchain bootstrap either BLOCKCHAINDL not provided or directory already exists"
+	echo "$0: No blockchain bootstrap. Either BLOCKCHAINDL not provided or directory already exists"
 fi
 
-echo "init-nxt.sh: Preparing config for ${NXTNET} net"
+echo "$0: Preparing config for ${NXTNET} net"
 sed -e "s/ADMINPASSWD/${ADMINPASSWD}/g" \
 	-e "s/TESTNET/${TESTNET}/g" \
 	-e "s/NXTNET/${NXTNET}/g" \
