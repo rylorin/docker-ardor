@@ -1,12 +1,8 @@
 FROM jeanblanchard/java:jre-8
 MAINTAINER rylorin <rylorin@gmail.com>
 
-#LABEL version="1.11.10"
-#ENV NRSVersion=1.11.10
-#ENV NRSPlatform=nxt
-
-LABEL version="2.0.14"
-ENV NRSVersion=2.0.14
+LABEL version="2.2.2"
+ENV NRSVersion=2.2.2
 ENV NRSPlatform=ardor
 
 RUN \
