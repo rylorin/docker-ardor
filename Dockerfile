@@ -11,7 +11,7 @@ RUN \
   mkdir /nxt-boot && \
   wget --no-check-certificate https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip && \
   wget --no-check-certificate  https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip.asc && \
-  gpg --keyserver pgpkeys.mit.edu --recv-key 0xC654D7FCFF18FD55 && \
+  gpg --keyserver pool.sks-keyservers.net --recv-key 0xC654D7FCFF18FD55 && \
   gpg --verify ${NRSPlatform}-client-${NRSVersion}.zip.asc && \
   mkdir /ardor && ln -s /ardor /nxt && \
   unzip -o ${NRSPlatform}-client-${NRSVersion}.zip && \
