@@ -1,4 +1,4 @@
-Nxt blockchain's Docker image.
+# Nxt blockchain's Docker image.
 
 ## Intro
 Nxt is a proof-of-stake blockchain developped by Jelurida (https://www.jelurida.com/nxt).
