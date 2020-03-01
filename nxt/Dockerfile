@@ -1,8 +1,8 @@
 FROM java:latest
-MAINTAINER rylorin <rylorin@gmail.com>
+MAINTAINER "Ronan-Yann Lorin <rylorin@gmail.com>
 
-ENV NRSVersion=2.2.6
-ENV NRSPlatform=ardor
+ENV NRSVersion=1.12.1
+ENV NRSPlatform=nxt
 
 RUN set -eux \
   mkdir /nxt-boot && \
@@ -26,9 +26,9 @@ COPY ./nxt-main.properties /nxt-boot/conf/
 COPY ./nxt-test.properties /nxt-boot/conf/
 COPY ./init-nxt.sh /nxt-boot/
 
-# Ardor test net
-EXPOSE 26874 26876
-# Ardor main net
-EXPOSE 27874 27876
+# Nxt test net
+EXPOSE 6874 6876
+# NXT main net
+EXPOSE 7874 7876
 
 CMD ["/nxt-boot/init-nxt.sh", "/bin/sh"]

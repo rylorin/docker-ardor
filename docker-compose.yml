@@ -20,15 +20,17 @@ services:
         constraints:
           - node.platform.os == linux
           - node.role == worker
-  nxt-1-11-10:
-    image: rylorin/ardor:1.11.10
+      replicas: 0
+  nxt:
+    image: rylorin/nxt:latest
     environment:
       NXTNET: main
       ADMINPASSWD: Manhattan
-#    volumes:
-#      - db_nxt:/nxt/db:rw
+    volumes:
+      - db_nxt:/nxt/db:rw
     deploy:
       replicas: 0
 
 volumes:
   db:
+  db_nxt:
