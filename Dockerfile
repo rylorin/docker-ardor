@@ -1,13 +1,15 @@
-FROM jeanblanchard/java:jre-8
+FROM java:latest
 MAINTAINER rylorin <rylorin@gmail.com>
 
-LABEL version="2.2.3"
-ENV NRSVersion=2.2.3
+LABEL version="2.2.6"
+ENV NRSVersion=2.2.6
 ENV NRSPlatform=ardor
 
 RUN \
-  apk update && \
-  apk add wget gpgme && \
+  apt-get update ; \
+  apt-get install -y wget
+
+RUN \
   mkdir /nxt-boot && \
   wget --no-check-certificate https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip && \
   wget --no-check-certificate  https://bitbucket.org/Jelurida/${NRSPlatform}/downloads/${NRSPlatform}-client-${NRSVersion}.zip.asc && \
