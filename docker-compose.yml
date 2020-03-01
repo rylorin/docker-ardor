@@ -19,7 +19,7 @@ services:
       placement:
         constraints:
           - node.platform.os == linux
-          - node.hostname == vps312177.ovh.net
+          - node.role == worker
   nxt-1-11-10:
     image: rylorin/ardor:1.11.10
     environment:
