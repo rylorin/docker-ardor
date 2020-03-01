@@ -19,6 +19,15 @@ services:
         constraints:
           - node.platform.os == linux
           - node.hostname == vps312177.ovh.net
+  nxt-1-11-10:
+    image: rylorin/ardor:1.11.10
+    environment:
+      NXTNET: main
+      ADMINPASSWD: Manhattan
+#    volumes:
+#      - db_nxt:/nxt/db:rw
+    deploy:
+      replicas: 0
 
 volumes:
   db:

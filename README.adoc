@@ -126,3 +126,34 @@ The update from a version to the next is easy if you use a volume.
 NOTE: Once you upgraded to a new version, you will not be able to revert to an older version. So make it easy for you to revert, I suggest you create a ZIP of your current database. See chapters above.
 
 NOTE: When upgrading to a new version, the NRS client will only be available once the update is finished. If you cannot wait, you can watch the logs :)
+
+## Creating and running via docker compose
+
+I prefer to run the container using de docker compose file (and stack)
+
+Docker compose example:
+
+	version: '3.7'
+	services:
+	  ardor:
+	    image: rylorin/ardor:latest
+	    environment:
+	      NXTNET: main
+	      ADMINPASSWD: Manhattan
+	      BLOCKCHAINDL: https://www.jelurida.com/Ardor-nxt_db.zip
+	      MYADDRESS: ardor.123-group.com
+	      MYPLATFORM: '@rylorin'
+	    volumes:
+	      - db:/ardor/db:rw
+	    ports:
+	      - 27874:27874/tcp
+	      - 27876:27876/tcp
+	    deploy:
+	      placement:
+	        constraints:
+	          - node.platform.os == linux
+	volumes:
+	  db:
+  
+In this example, using a named volume will prevent the db to be wiped when you upgrade the container image.
+I also prefer (but not shown in this example) not to expose the UI port and use a firewall, that will also bring https support.
