@@ -1,4 +1,7 @@
-Ardor blockchain's Docker image.
+# Ardor blockchain's Docker image.
+
+## Note
+This ReadMe file is for rylorin/ardor image. If you are looking for rylorin/nxt readme please refer to https://github.com/rylorin/docker-ardor/blob/master/nxt/README.adoc. This is probably due to a DockerHub issue.
 
 ## Intro
 Ardor (http://www.ardorplatform.org) a blockchain-as-a-service platform that will allow people to utilize the blockchain technology of Nxt through the use of child chains.
