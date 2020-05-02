@@ -3,6 +3,8 @@
 [![LICENSE: MIT](https://img.shields.io/github/license/rylorin/docker-ardor)](https://raw.githubusercontent.com/rylorin/docker-ardor/master/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/rylorin/docker-ardor)](https://github.com/rylorin/docker-ardor/graphs/contributors)
 
+![Docker Automated build](https://img.shields.io/docker/automated/rylorin/ardor.svg) ![Docker Build Status](https://img.shields.io/docker/build/rylorin/ardor.svg) ![Docker Stars](https://img.shields.io/docker/stars/rylorin/ardor.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/rylorin/ardor.svg)
+
 ## Note
 This ReadMe file is for rylorin/ardor image.
 If you are looking for rylorin/nxt readme please refer to https://github.com/rylorin/docker-ardor/blob/master/nxt/README.md.

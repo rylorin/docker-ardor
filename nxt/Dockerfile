@@ -1,7 +1,7 @@
 FROM java:latest
 MAINTAINER "Ronan-Yann Lorin <rylorin@gmail.com>
 
-ENV NRSVersion=1.12.1
+ENV NRSVersion=1.12.2
 ENV NRSPlatform=nxt
 
 RUN set -eux \
