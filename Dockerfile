@@ -1,7 +1,7 @@
 FROM java:latest
 MAINTAINER rylorin <rylorin@gmail.com>
 
-ENV NRSVersion=2.2.3
+ENV NRSVersion=2.3.3
 ENV NRSPlatform=ardor
 
 RUN set -eux \
