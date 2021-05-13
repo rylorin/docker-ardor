@@ -19,7 +19,7 @@ services:
       placement:
         constraints:
           - node.platform.os == linux
-          - node.role == worker
+#          - node.role == worker
       replicas: 0
   nxt:
     image: rylorin/nxt:latest
@@ -29,6 +29,9 @@ services:
     volumes:
       - db_nxt:/nxt/db:rw
     deploy:
+      placement:
+        constraints:
+          - node.platform.os == linux
       replicas: 0
 
 volumes:
